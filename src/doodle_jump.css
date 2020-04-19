@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'KulminoituvaRegular';
+    src: url('http://www.miketaylr.com/f/kulminoituva.ttf');
+}
+canvas {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}

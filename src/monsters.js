@@ -1,6 +1,7 @@
 function spawnMonster() {
+    //TODO
     var monsterChances = {
-        "smallRed": 30
+        "smallRed": 5
     };
 
     if (Math.round(Math.random() * monsterChances["smallRed"]) === 0) {
@@ -12,10 +13,10 @@ function spawnMonster() {
 var smallRed = new function() {
     this.img = new Image();
     this.img.src = "Sprites/Monsters/smallRed.png";
-    this.xDif = 10;
-    this.yDif = -30;
-    this.width = 69;
-    this.height = 60;
+    this.xDif = adjustX(27);
+    this.yDif = adjustY(-30);
+    this.width = adjustX(69);
+    this.height = adjustY(60);
 
     this.draw = function(blockX, blockY) {
         ctx.drawImage(this.img, blockX + this.xDif, blockY + this.yDif, this.width, this.height);

@@ -3,8 +3,8 @@
 function block() {
     this.x;
     this.y;
-    this.width = 125;
-    this.height = 25;
+    this.width = adjustX(125);
+    this.height = adjustY(25);
     this.powerup;
     this.type;
     this.monster;
@@ -25,9 +25,9 @@ function block() {
         }
 
         if (this.monster === 0) {
-            roundedRect(ctx,this.x,this.y,this.width,this.height,5,"#00bfff")
+            roundedRect(ctx,this.x,this.y,this.width,this.height,adjustX(5),"#00bfff")
             //ctx.fillRect(this.x, this.y, this.width, this.height);
-            ctx.font = "bold 20px BlinkMacSystemFont,'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue'";
+            ctx.font = "bold " + adjustX(20)+ "px BlinkMacSystemFont,'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue'";
             ctx.fillStyle = "white";
             ctx.textAlign = "center";
             let text = "";
@@ -50,14 +50,14 @@ function block() {
 
         if (this.powerup === "spring") {
             ctx.fillStyle = "grey";
-            ctx.fillRect(this.x + 35, this.y - 10, 30, 10);
+            ctx.fillRect(this.x + adjustX(35), this.y - adjustY(10), adjustX(30), adjustY(10));
         } else if (this.powerup === "springBoots") {
             ctx.fillStyle = "blue";
-            ctx.fillRect(this.x + 30, this.y - 25, 15, 10);
-            ctx.fillRect(this.x + 53, this.y - 25, 15, 10);  
+            ctx.fillRect(this.x + adjustX(35), this.y - adjustY(25), adjustX(15), adjustY(10));
+            ctx.fillRect(this.x + adjustX(35), this.y - adjustY(25), adjustX(15), adjustY(10));
             ctx.fillStyle = "grey";
-            ctx.fillRect(this.x + 30, this.y - 15, 15, 15);
-            ctx.fillRect(this.x + 53, this.y - 15, 15, 15);
+            ctx.fillRect(this.x + adjustX(35), this.y - adjustY(15), adjustX(15), adjustY(15));
+            ctx.fillRect(this.x + adjustX(35), this.y - adjustY(15), adjustX(15), adjustY(15));
         }
     }
 
@@ -70,15 +70,15 @@ function block() {
             }
 
             if (this.direction === "right") {
-                this.x += 2.5;
+                this.x += adjustX(2.5);
             } else {
-                this.x -= 2.5;
+                this.x -= adjustX(2.5);
             }
         }
 
         if (this.monster === "smallRed") {
             if (this.direction === "right") {
-                this.x += 1;
+                this.x += adjustX(1);
                 this.moveTime -= 1;
 
                 if (this.moveTime === 0) {
@@ -86,7 +86,7 @@ function block() {
                     this.moveTime = 10;
                 }
             } else {
-                this.x -= 1;
+                this.x -= adjustX(1);
                 this.moveTime -= 1;
 
                 if (this.moveTime === 0) {

@@ -1,4 +1,4 @@
-let experiment = 50;
+let experiment = adjustY(50);
 function blockSpawner() {
     let i;
     if (lowestBlock === 0) {
@@ -36,14 +36,14 @@ function blockSpawner() {
 
             //TODO figure out the levels
             if (blocks[i].type === "break" || blocks[i-1].type === "break") {
-                blocks[i].y = (blocks[i-1].y) - (((Math.random()*(80 + (difficulty * 25))) + 30 + experiment) * 2 / 3);
+                blocks[i].y = (blocks[i-1].y) - (((Math.random()*(adjustY(80) + (difficulty * adjustY(25)))) + adjustY(10) + experiment) * (2 / 3));
             } else if (blocks[i].monster !== 0) {
-                blocks[i].y = (blocks[i-1].y) - ((Math.random()*(80 + (difficulty*25)))+50 + experiment);
+                blocks[i].y = (blocks[i-1].y) - ((Math.random()*(adjustY(80) + (difficulty*adjustY(25))))+adjustY(50) + experiment);
             }  else if (blocks[i-1].monster !== 0) {
-                blocks[i].y = (blocks[i-1].y) - ((Math.random()*(80 + (difficulty*25)))+50 + experiment);
+                blocks[i].y = (blocks[i-1].y) - ((Math.random()*(adjustY(80) + (difficulty*adjustY(25))))+adjustY(50) + experiment);
             }
             else {
-                blocks[i].y = (blocks[i-1].y) - ((Math.random()*(80 + (difficulty*25)))+30 + experiment);
+                blocks[i].y = (blocks[i-1].y) - ((Math.random()*(adjustY(80) + (difficulty*adjustY(25))))+adjustY(30) + experiment);
             }
         } 
     }

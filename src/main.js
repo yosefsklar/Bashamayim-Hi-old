@@ -1,7 +1,6 @@
 var c = document.createElement("canvas");
 var ctx = c.getContext("2d");
-var screenWidth = 500;
-var screenHeight = 800;
+
 c.width = screenWidth;
 c.height = screenHeight;
 document.body.appendChild(c);
@@ -22,7 +21,7 @@ var yDistanceTravelled = 0;
 
 
 //////////////////////////////////
-const gravity = 0.34;
+const gravity = adjustY(0.34);
 var lowestBlock = 0;
 var blocks = [];
 var powerups = [];
@@ -37,11 +36,13 @@ var interval = 1000/fps;
 var delta;
 var now;
 ///////////
+
+
 function keydown(e) {
     //TODO: change to avoid deprication
-    if (e.keyCode === 65) {
+    if (e.keyCode === 37) {
         holdingLeftKey = true;
-    }   else if (e.keyCode === 68) {
+    }   else if (e.keyCode === 39) {
         holdingRightKey = true;
     }
     //when game ends, and the press play again, things reset (TODO this should be a self contained function)
@@ -57,16 +58,16 @@ function keydown(e) {
         ////////////////////////////////////
 
         blocks.push(new block);
-        blocks[0].x = 300;
-        blocks[0].y = 650;
+        blocks[0].x = adjustX(300);
+        blocks[0].y = adjustY(650);
         blocks[0].monster = 0;
         blocks[0].type = 0;
         blocks[0].powerup = 0;
 
         blockSpawner();
 
-        player.x = 300;
-        player.y = 550;
+        player.x = adjustX(300);
+        player.y = adjustY(550);
 
 
         dead = false;
@@ -74,9 +75,9 @@ function keydown(e) {
 }
 
 function keyup(e) {
-    if (e.keyCode === 65) {
+    if (e.keyCode === 37) {
         holdingLeftKey = false;
-    } else if (e.keyCode === 68) {
+    } else if (e.keyCode === 39) {
         holdingRightKey = false;
     }
 }
@@ -94,8 +95,8 @@ function showScore() {
 }
 //TODO this should be in a funciton, not sure what its doing,
 blocks.push(new block);
-blocks[0].x = 300;
-blocks[0].y = 650;
+blocks[0].x = adjustX(300);
+blocks[0].y = adjustY(650);
 blocks[0].monster = 0;
 blocks[0].type = 0;
 blocks[0].powerup = 0;

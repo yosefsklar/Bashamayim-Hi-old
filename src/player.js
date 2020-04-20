@@ -1,11 +1,11 @@
 var player = new function() {
-    this.x = 300;
-    this.y = 550;
+    this.x = adjustX(300);
+    this.y = adjustY(550);
     this.img = new Image();
     this.img.src = "Sprites/rightPlayer.png";
-    this.width = 80;
-    this.height = 80;
-    this.xSpeed = 6.7;
+    this.width = adjustX(80);
+    this.height = adjustY(80);
+    this.xSpeed = adjustX(6.7);
     this.ySpeed = 0;
     this.springBootsDurability = 0;
     this.direction = "left";
@@ -46,7 +46,7 @@ var player = new function() {
         //Check for jump
         for (var i = 0; i < blocks.length; i++) {
             if (this.ySpeed >= 0) {
-                if (this.x >= blocks[i].x - this.width + 15 && this.x <= blocks[i].x + blocks[i].width - 15 &&
+                if (this.x >= blocks[i].x - this.width + adjustX(15) && this.x <= blocks[i].x + blocks[i].width - adjustX(15) &&
                     this.y >= blocks[i].y - this.height && this.y <= blocks[i].y + blocks[i].height - this.height) {
                     if (blocks[i].type === "break") {
                         blocks[i] = 0;
@@ -61,8 +61,8 @@ var player = new function() {
             if (this.y > blocks[i].y) {
                 //Check for hit monster
                 if (blocks[i].monster !== 0 && blocks[i].monster !== undefined) {
-                    if (this.x >= blocks[i].x - this.width + 15 && this.x <= blocks[i].x + blocks[i].width - 15 &&
-                        this.y >= blocks[i].y - blocks[i].height && this.y <= blocks[i].y + blocks[i].height) {
+                    if (this.x >= blocks[i].x - this.width + adjustX(27) && this.x <= blocks[i].x + blocks[i].width - adjustX(27) &&
+                        this.y >= blocks[i].y - blocks[i].height  && this.y <= blocks[i].y + blocks[i].height) {
                         dead = true;
                     }
                 }
@@ -90,7 +90,7 @@ var player = new function() {
     }
     
     this.jump = function(powerup, type) {
-        this.ySpeed = -13.2;
+        this.ySpeed =adjustY( -13.2);
 
         if (powerup === "springBoots") {
             this.springBootsDurability = 6;
@@ -98,12 +98,12 @@ var player = new function() {
         
         if (type === 0) {
             if (powerup === "spring") {
-                this.ySpeed = -20;
+                this.ySpeed = adjustY(-20);
             } 
         }
 
         if (this.springBootsDurability !== 0) {
-            this.ySpeed = -20;
+            this.ySpeed = adjustY(-20);
             this.springBootsDurability -= 1;
         }  
     }
@@ -128,18 +128,18 @@ var player = new function() {
         if (this.springBootsDurability !== 0) {
             if (this.direction === "right") {
                 ctx.fillStyle = "blue";
-                ctx.fillRect(this.x + 10, this.y + 66, 15, 10);
-                ctx.fillRect(this.x + 33, this.y + 66, 15, 10);  
+                ctx.fillRect(this.x + adjustX(10), this.y + adjustY(66), adjustX(15), adjustY(10));
+                ctx.fillRect(this.x + adjustX(33), this.y + adjustY(66), adjustX(15), adjustY(10));
                 ctx.fillStyle = "grey";
-                ctx.fillRect(this.x + 10, this.y + 76, 15, 15);
-                ctx.fillRect(this.x + 33, this.y + 76, 15, 15);
+                ctx.fillRect(this.x + adjustX(10), this.y + adjustY(76), adjustX(15), adjustY(15));
+                ctx.fillRect(this.x + adjustX(33), this.y + adjustY(76), adjustX(15), adjustY(15));
             } else {
                 ctx.fillStyle = "blue";
-                ctx.fillRect(this.x + 30, this.y + 66, 15, 10);
-                ctx.fillRect(this.x + 53, this.y + 66, 15, 10);  
+                ctx.fillRect(this.x + adjustX(30), this.y + adjustY(66), adjustX(15), adjustY(10));
+                ctx.fillRect(this.x + adjustX(53), this.y + adjustY(66), adjustX(15), adjustY(10));
                 ctx.fillStyle = "grey";
-                ctx.fillRect(this.x + 30, this.y + 76, 15, 15);
-                ctx.fillRect(this.x + 53, this.y + 76, 15, 15);
+                ctx.fillRect(this.x + adjustX(30), this.y + adjustY(76), adjustX(15), adjustY(15));
+                ctx.fillRect(this.x + adjustX(53), this.y + adjustY(76), adjustX(15), adjustY(15));
             }
         }
     }

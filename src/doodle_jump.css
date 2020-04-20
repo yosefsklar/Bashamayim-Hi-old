@@ -2,6 +2,10 @@
     font-family: 'KulminoituvaRegular';
     src: url('http://www.miketaylr.com/f/kulminoituva.ttf');
 }
+div{
+    height: 50px;
+    background-color: black;
+}
 canvas {
     margin-left: auto;
     margin-right: auto;

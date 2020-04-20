@@ -126,7 +126,9 @@ function loop() {
         }
 
         player.update();
-        player.draw();
+        if(!dead){
+            player.draw();
+        }
 
         showScore();
 

@@ -2,6 +2,7 @@ function spawnPowerup() {
     var powerupChances = {
         "spring": 20,
         "springBoots": 80,
+        "laser": 100,
         "flyingHat": 80,
         "rocket": 120
     };

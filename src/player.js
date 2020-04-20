@@ -2,7 +2,8 @@ var player = new function() {
     this.x = adjustX(300);
     this.y = adjustY(550);
     this.img = new Image();
-    this.img.src = "Sprites/rightPlayer.png";
+    //this.img.src = "Sprites/rightPlayer.png";
+    this.img.src = "Sprites/SRHirsch.png";
     this.width = adjustX(80);
     this.height = adjustY(80);
     this.xSpeed = adjustX(6.7);
@@ -33,13 +34,15 @@ var player = new function() {
         //A key pressed
         if (holdingLeftKey) {
             this.direction = "left";
-            this.img.src = "Sprites/leftPlayer.png";
+            //this.img.src = "Sprites/leftPlayer.png";
+            this.img.src = "Sprites/SRHirsch.png";
             player.moveLeft();
         }
         //D key pressed 
         if (holdingRightKey) {
             this.direction = "right";
-            this.img.src = "Sprites/rightPlayer.png";
+            //this.img.src = "Sprites/rightPlayer.png";
+            this.img.src = "Sprites/SRHirsch.png";
             player.moveRight();
         }
 
@@ -55,6 +58,7 @@ var player = new function() {
                         blocks[i] = 0;
                     } else {
                         this.jump(blocks[i].powerup, blocks[i].type);
+                            //    blocks[i].passedText = true;
                     }
                 }
             } 
@@ -70,23 +74,32 @@ var player = new function() {
         }
 
 
-        for (var i = blocks.length-1; i > 0; i--) {
+        for (let i = blocks.length-1; i > 0; i--) {
             if (blocks[i].y > screenHeight) {
                 lowestBlock = i+1;
                 break;
             }
         }
 
-        if (this.y >= blocks[lowestBlock].y) {
+        if (this.y >= blocks[lowestBlock].y || this.y >= screenHeight) {
             dead = true;
         }
 
         if (lowestBlock >= 45) {
-            if (difficulty < 6) {
+            if (difficulty < 4) {
                 difficulty += 1;
             }
             blockSpawner();
         }
+
+        // for (let i = 0; i < blocks.length; i++) {
+        //     if (blocks[i].y < this.y + this.height) {
+        //         break;
+        //     }
+        //     if(blocks[i].type !== "break") {
+        //         blocks[i].passedText = true;
+        //     }
+        // }
     }
     
     this.jump = function(powerup, type) {
@@ -105,7 +118,15 @@ var player = new function() {
         if (this.springBootsDurability !== 0) {
             this.ySpeed = adjustY(-20);
             this.springBootsDurability -= 1;
-        }  
+        }
+        // for (let i = lowestBlock; i < blocks.length; i++) {
+        //     if (blocks[i].y <= this.y + this.height - blocks[i].height) {
+        //         break;
+        //     }
+        //     if(blocks[i].type !== "break") {
+        //         blocks[i].passedText = true;
+        //     }
+        // }
     }
 
     this.moveLeft = function() {
@@ -144,3 +165,4 @@ var player = new function() {
         }
     }
 }
+

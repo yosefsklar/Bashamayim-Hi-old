@@ -11,6 +11,7 @@ function block() {
     this.direction = "right";
     this.moveTime = 10;
     this.textNumber;
+    this.passedText = false;
 
 
 
@@ -25,7 +26,13 @@ function block() {
         }
 
         if (this.monster === 0) {
-            roundedRect(ctx,this.x,this.y,this.width,this.height,adjustX(5),"#00bfff")
+            let blockColor = "#00bfff";
+            if(this.passedText){
+                blockColor = "#0a13ff";
+                ctx.fillStyle = "#0a13ff";
+            }
+
+            roundedRect(ctx,this.x,this.y,this.width,this.height,adjustX(5),blockColor);
             //ctx.fillRect(this.x, this.y, this.width, this.height);
             ctx.font = "bold " + adjustX(20)+ "px BlinkMacSystemFont,'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue'";
             ctx.fillStyle = "white";

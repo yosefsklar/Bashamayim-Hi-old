@@ -12,6 +12,7 @@ function block() {
     this.moveTime = 10;
     this.textNumber;
     this.passedText = false;
+    this.highlight = false;
 
 
 
@@ -30,6 +31,10 @@ function block() {
             if(this.passedText){
                 blockColor = "#0a13ff";
                 ctx.fillStyle = "#0a13ff";
+            }
+            else if(this.highlight){
+                blockColor = "#5EFF16";
+                ctx.fillStyle = "#5EFF16";
             }
 
             roundedRect(ctx,this.x,this.y,this.width,this.height,adjustX(5),blockColor);
@@ -65,6 +70,19 @@ function block() {
             ctx.fillStyle = "grey";
             ctx.fillRect(this.x + adjustX(35), this.y - adjustY(15), adjustX(15), adjustY(15));
             ctx.fillRect(this.x + adjustX(35), this.y - adjustY(15), adjustX(15), adjustY(15));
+        } else if(this.powerup == "orb"){
+            ctx.beginPath();
+            ctx.arc(this.x + (this.width/2), this.y - adjustY(15), 10, 0, 2 * Math.PI);
+            ctx.fillStyle = "white";
+            ctx.fill();
+            ctx.stroke();
+        }
+        else if(this.powerup == "laser"){
+            ctx.beginPath();
+            ctx.arc(this.x + (this.width/2), this.y - adjustY(15), 10, 0, 2 * Math.PI);
+            ctx.fillStyle = "#5EFF16";
+            ctx.fill();
+            ctx.stroke();
         }
     }
 

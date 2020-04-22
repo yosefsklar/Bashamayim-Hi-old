@@ -54,10 +54,11 @@ var player = new function() {
                     if (blocks[i].type === "break") {
                         blocks[i] = 0;
                     } else if (blocks[i].monster !== 0) {
-                        this.jump(blocks[i].powerup, blocks[i].type);
-                        blocks[i] = 0;
+                        this.jump(blocks[i], i);
+                        //blocks[i] = 0;
+                        blocks[i].monster = 0;
                     } else {
-                        this.jump(blocks[i].powerup, blocks[i].type);
+                        this.jump(blocks[i], i);
                             //    blocks[i].passedText = true;
                     }
                 }
@@ -86,7 +87,7 @@ var player = new function() {
         }
 
         if (lowestBlock >= 45) {
-            if (difficulty < 4) {
+            if (difficulty < 0) {
                 difficulty += 1;
             }
             blockSpawner();
@@ -102,11 +103,39 @@ var player = new function() {
         // }
     }
     
-    this.jump = function(powerup, type) {
+    this.jump = function(block,blockIndex) {
+        let powerup = block.powerup;
+        let type = block.type;
         this.ySpeed =adjustY( -13.2);
 
         if (powerup === "springBoots") {
             this.springBootsDurability = 6;
+        }
+
+        if (powerup === "orb") {
+            for (let i = lowestBlock; i < blocks.length; i++) {
+                if (blocks[i].y <= this.y + this.height - blocks[i].height) {
+                    block.powerup = 0;
+                    break;
+                }
+                if(blocks[i].type !== "break") {
+                    blocks[i].passedText = true;
+                }
+            }
+
+        }
+        if (powerup === "laser") {
+            let i = blockIndex + 1;
+            let count = 0;
+            while(count < 5){
+                while(blocks[i].type === "break"){
+                    i++;
+                }
+                blocks[i].highlight = true;
+                i++;
+                count++;
+            }
+            block.powerup = 0;
         }
         
         if (type === 0) {
